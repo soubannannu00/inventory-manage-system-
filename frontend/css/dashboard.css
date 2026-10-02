@@ -1,0 +1,33 @@
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.stat-card {
+  background: white;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 17px;
+}
+.stat-card .label {
+  color: var(--muted);
+  font-size: 12px;
+}
+.stat-card .value {
+  font: 800 24px Manrope;
+  margin: 11px 0 3px;
+}
+.chart-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 18px;
+}
+.chart-box {
+  height: 280px;
+  position: relative;
+}
+.panel h3 {
+  font: 700 14px Manrope;
+  margin: 0 0 18px;
+}

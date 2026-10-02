@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Sign in · Stockwise</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />
+  </head>
+  <body class="login-page">
+    <main class="login-card">
+      <div class="brand-mark">S</div>
+      <p class="eyebrow">STOCKWISE ERP</p>
+      <h1>Welcome back</h1>
+      <p class="muted">Sign in to manage your inventory and operations.</p>
+      <form id="loginForm">
+        <label
+          >Email address<input
+            name="email"
+            type="email"
+            value="admin@example.com"
+            required /></label
+        ><label
+          >Password<input
+            name="password"
+            type="password"
+            value="admin123"
+            required /></label
+        ><button class="button primary full">Sign in</button>
+        <p id="loginError" class="error"></p>
+      </form>
+      <small>Demo: admin@example.com · admin123</small>
+    </main>
+    <script src="js/api.js"></script>
+  </body>
+</html>
