@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost:3000";
+const API_BASE = "https://inventory-manage-system-bqex.onrender.com";
 
 const API = {
   token: localStorage.getItem("token"),
