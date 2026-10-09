@@ -23,7 +23,7 @@ Demo login: `admin@example.com` / `admin123`.
 All routes except login and health require `Authorization: Bearer <token>`.
 - `GET /api/health`; `POST /api/auth/login`; `GET /api/auth/me`
 - CRUD endpoints: `/api/products`, `/api/categories`, `/api/suppliers`, `/api/customers`, `/api/warehouses`, `/api/orders`
-- `GET,POST /api/purchases`; `GET,POST /api/sales`
+- `GET,POST /api/purchases`; `DELETE /api/purchases/:id` (refuses purchases with linked stock-movement history); `GET,POST /api/sales`
 - `GET /api/inventory`, `/api/stock-movements`, `/api/dashboard`, `/api/reports`, `/api/notifications`
 - `PUT /api/notifications/:id/read`; `GET,PUT /api/profile`; `GET,PUT /api/settings`
 

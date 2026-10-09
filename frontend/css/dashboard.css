@@ -1,33 +1,57 @@
-.stat-grid {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
-  margin-bottom: 20px;
-}
-.stat-card {
-  background: white;
-  border: 1px solid var(--line);
-  border-radius: 10px;
-  padding: 17px;
-}
-.stat-card .label {
-  color: var(--muted);
-  font-size: 12px;
-}
-.stat-card .value {
-  font: 800 24px Manrope;
-  margin: 11px 0 3px;
-}
-.chart-grid {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 18px;
-}
-.chart-box {
-  height: 280px;
-  position: relative;
-}
-.panel h3 {
-  font: 700 14px Manrope;
-  margin: 0 0 18px;
-}
+.dashboard-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:20px; margin:2px 0 25px; }
+.dashboard-heading h1 { margin:4px 0 5px; color:var(--navy); font:800 27px Manrope,sans-serif; letter-spacing:-.7px; }
+.dashboard-heading p { margin:0; }
+.dashboard-heading .eyebrow { color:var(--blue-dark); font-size:10px; font-weight:800; letter-spacing:1.1px; }
+.dashboard-date { display:flex; align-items:center; gap:8px; color:var(--muted); font-size:11px; white-space:nowrap; }
+.dashboard-stat-grid { grid-template-columns:repeat(4,minmax(0,1fr)); margin-bottom:20px; }
+.stat-card { min-width:0; display:flex; align-items:center; gap:13px; padding:17px; }
+.stat-icon,.panel-icon { width:40px; height:40px; flex:0 0 auto; display:grid; place-items:center; border-radius:12px; background:#edf4ff; color:var(--blue); }
+.stat-icon.green { color:#159568; background:#e8f8f1; }
+.stat-icon.orange { color:#d7871b; background:#fff4df; }
+.stat-icon.purple { color:#7956cf; background:#f1ecff; }
+.stat-content { min-width:0; display:grid; gap:5px; }
+.stat-card .label { color:var(--muted); font-size:11px; }
+.stat-card .value { margin:0; overflow:hidden; color:var(--navy); font:800 22px Manrope,sans-serif; text-overflow:ellipsis; white-space:nowrap; }
+.dashboard-analytics,.dashboard-lower { display:grid; grid-template-columns:minmax(0,1.55fr) minmax(300px,1fr); gap:18px; margin-bottom:18px; }
+.analytics-panel,.table-panel,.top-products-panel { min-width:0; padding:20px; }
+.panel-heading { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:15px; }
+.panel-heading h2 { margin:0; color:var(--navy); font:750 14px Manrope,sans-serif; }
+.panel-heading p { margin:5px 0 0; color:var(--muted); font-size:10px; }
+.panel-icon { width:34px; height:34px; border-radius:10px; font-size:13px; }
+.chart-box { position:relative; height:260px; }
+.stock-chart-wrap { min-height:260px; display:flex; align-items:center; justify-content:center; gap:24px; }
+.stock-donut { position:relative; width:min(190px,52%); height:190px; }
+.stock-donut canvas { position:relative; z-index:1; }
+.donut-center { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; color:var(--muted); font-size:10px; pointer-events:none; }
+.donut-center strong { color:var(--navy); font:800 22px Manrope,sans-serif; }
+.stock-status-legend { min-width:116px; display:grid; gap:12px; }
+.stock-legend-row { display:flex; align-items:center; justify-content:space-between; gap:12px; color:var(--muted); font-size:10px; }
+.stock-legend-label { display:flex; align-items:center; gap:7px; white-space:nowrap; }
+.stock-legend-label i { width:8px; height:8px; border-radius:50%; background:var(--legend-color); }
+.stock-legend-row strong { display:flex; align-items:center; gap:6px; color:var(--navy); font-size:10px; }
+.stock-legend-row small { color:#94a3b8; font-size:9px; }
+.dashboard-lower { grid-template-columns:minmax(0,1.55fr) minmax(280px,1fr); }
+.dashboard-table-wrap { margin:0 -20px -20px; border:0; border-radius:0 0 12px 12px; }
+.dashboard-table { min-width:760px; }
+.dashboard-table th,.dashboard-table td { padding:11px 13px; font-size:10px; }
+.dashboard-table th:first-child,.dashboard-table td:first-child { padding-left:20px; }
+.record-id { color:var(--blue-dark); font-weight:750; }
+.view-all-link { color:var(--blue-dark); font-size:10px; font-weight:700; text-decoration:none; white-space:nowrap; }
+.view-all-link:hover { text-decoration:underline; }
+.row-delete-button { width:29px; height:29px; min-height:29px; border-color:#fee2e2; color:#dc5050; }
+.row-delete-button:hover { color:#fff; background:#dc5050; border-color:#dc5050; }
+.top-product-list { display:grid; gap:17px; padding:4px 0; }
+.top-product-row { display:flex; align-items:flex-start; gap:11px; }
+.product-rank { width:25px; height:25px; flex:0 0 auto; display:grid; place-items:center; border-radius:8px; background:#f0f5fc; color:var(--muted); font-size:10px; font-weight:800; }
+.top-product-info { min-width:0; flex:1; }
+.top-product-copy { display:flex; justify-content:space-between; gap:8px; margin:1px 0 8px; }
+.top-product-copy strong { overflow:hidden; color:var(--navy); font-size:10px; text-overflow:ellipsis; white-space:nowrap; }
+.top-product-copy span { color:var(--muted); font-size:9px; text-align:right; white-space:nowrap; }
+.progress-track { height:5px; overflow:hidden; border-radius:99px; background:#eef2f7; }
+.progress-track span { display:block; height:100%; border-radius:inherit; background:var(--blue); }
+.empty-cell { padding:28px!important; color:var(--muted); text-align:center; }
+.error-panel { padding:28px; }
+.error-panel h2 { margin:0 0 8px; font:750 16px Manrope,sans-serif; }
+@media(max-width:1150px) { .dashboard-stat-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .dashboard-analytics,.dashboard-lower { grid-template-columns:minmax(0,1.25fr) minmax(270px,1fr); } }
+@media(max-width:900px) { .dashboard-analytics,.dashboard-lower { grid-template-columns:1fr; } .stock-chart-wrap { min-height:220px; } }
+@media(max-width:560px) { .dashboard-heading { align-items:flex-start; flex-direction:column; gap:9px; } .dashboard-heading h1 { font-size:23px; } .dashboard-stat-grid { gap:10px; } .stat-card { gap:9px; padding:13px 10px; } .stat-icon { width:33px; height:33px; border-radius:10px; } .stat-card .label { font-size:9px; } .stat-card .value { font-size:18px; } .analytics-panel,.table-panel,.top-products-panel { padding:15px; } .dashboard-table-wrap { margin:0 -15px -15px; } .dashboard-table th:first-child,.dashboard-table td:first-child { padding-left:15px; } .chart-box { height:230px; } .stock-chart-wrap { gap:10px; } .stock-donut { width:52%; height:160px; } .stock-status-legend { min-width:105px; gap:10px; } }
