@@ -20,6 +20,20 @@
   --purple-soft: #f1edff;
   --shadow: 0 5px 18px rgba(16, 27, 60, 0.045);
   --radius: 12px;
+  --dashboard-bg: #071426;
+  --dashboard-sidebar: #09182b;
+  --dashboard-card: #10243b;
+  --dashboard-elevated: #142b45;
+  --dashboard-blue: #3b82f6;
+  --dashboard-success: #22c55e;
+  --dashboard-warning: #f59e0b;
+  --dashboard-error: #ef4444;
+  --dashboard-teal: #2dd4bf;
+  --dashboard-text: #f8fafc;
+  --dashboard-muted: #94a3b8;
+  --dashboard-border: rgba(148, 163, 184, 0.17);
+  --dashboard-grid: rgba(148, 163, 184, 0.12);
+  --dashboard-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
 }
 
 * { box-sizing: border-box; }
