@@ -231,3 +231,13 @@ body.dashboard-theme .dashboard-loading { display: flex; align-items: center; ga
 @media(prefers-reduced-motion:reduce) {
   body.dashboard-theme *, body.dashboard-theme *::before, body.dashboard-theme *::after { scroll-behavior: auto!important; animation-duration: .01ms!important; animation-iteration-count: 1!important; transition-duration: .01ms!important; }
 }
+
+/* Match the dashboard's dark workspace to the shared Stockwise component language. */
+body.dashboard-theme .panel { border-radius: 15px; }
+body.dashboard-theme .dashboard-stat-grid .stat-card { border-radius: 14px; }
+body.dashboard-theme .dashboard-stat-grid .stat-card:focus-visible,
+body.dashboard-theme .trend-range-button:focus-visible,
+body.dashboard-theme .view-all-link:focus-visible { outline: 2px solid #86b3ff; outline-offset: 3px; }
+body.dashboard-theme .panel-heading h2 { letter-spacing: -.2px; }
+body.dashboard-theme .dashboard-table th { letter-spacing: .55px; }
+body.dashboard-theme .low-stock-row:focus-visible { outline: 2px solid #86b3ff; outline-offset: 1px; }
