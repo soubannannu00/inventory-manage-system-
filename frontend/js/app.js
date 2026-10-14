@@ -11,9 +11,6 @@ const nav = [
   ["orders", "Orders", "fa-clipboard-list"],
   ["stock-movements", "Stock Movements", "fa-arrow-right-arrow-left"],
   ["reports", "Reports", "fa-chart-column"],
-  ["users", "Users", "fa-user-shield"],
-  ["settings", "Settings", "fa-gear"],
-  ["profile", "Profile", "fa-circle-user"],
 ];
 const defs = {
   products: [
@@ -166,9 +163,8 @@ function shell(title) {
   let u = JSON.parse(localStorage.getItem("user") || "{}");
   const displayName = u.name || "Admin";
   const initial = displayName.trim().charAt(0).toUpperCase() || "A";
-  const visibleNav = nav.filter(([id]) => id !== "users" || String(u.role || "").toLowerCase() === "admin");
   document.getElementById("app").innerHTML =
-    `<div class="sidebar-backdrop" id="sidebar-backdrop"></div><aside class="sidebar" id="sidebar"><a class="brand" href="dashboard.html"><b class="brand-mark"><i class="fa-solid fa-boxes-stacked"></i></b><span>Stockwise</span></a><div class="nav-label">WORKSPACE</div><nav class="nav-list">${visibleNav.map(([id, label, icon]) => `<a class="nav-link ${page === id ? "active" : ""}" href="${id === "dashboard" ? "dashboard.html" : id + ".html"}"><i class="fa-solid ${icon}" aria-hidden="true"></i><span>${label}</span></a>`).join("")}</nav><div class="side-foot"><span class="avatar">${esc(initial)}</span><span class="side-profile-copy"><strong>${esc(displayName)}</strong><small>${esc(u.role || "Administrator")}</small></span><button class="icon-button logout-button" type="button" aria-label="Log out" title="Log out"><i class="fa-solid fa-arrow-right-from-bracket"></i></button></div></aside><main class="main"><header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu-button" id="menu-toggle" type="button" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button><strong class="top-title">${esc(title)}</strong></div><div class="top-actions"><label class="global-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="global-search-input" type="search" placeholder="Search products, suppliers, purchases" autocomplete="off" aria-label="Search products, suppliers, and purchases"><div class="global-search-results" id="global-search-results" hidden></div></label><span class="top-date">${new Intl.DateTimeFormat("en-IN", { dateStyle: "medium" }).format(new Date())}</span><div class="notification-wrap"><button class="icon-button notification-button" id="notification-toggle" type="button" aria-label="Notifications" aria-expanded="false"><i class="fa-regular fa-bell"></i><span class="notification-count" id="notification-count" hidden></span></button><div class="notification-panel" id="notification-panel" hidden></div></div><button class="profile-shortcut" type="button" onclick="location.href='profile.html'"><span class="avatar">${esc(initial)}</span><span>${esc(displayName)}</span></button></div></header><section class="content" id="content"></section></main>`;
+    `<div class="sidebar-backdrop" id="sidebar-backdrop"></div><aside class="sidebar" id="sidebar"><a class="brand" href="dashboard.html"><b class="brand-mark"><i class="fa-solid fa-boxes-stacked"></i></b><span>Stockwise</span></a><div class="nav-label">WORKSPACE</div><nav class="nav-list">${nav.map(([id, label, icon]) => `<a class="nav-link ${page === id ? "active" : ""}" href="${id === "dashboard" ? "dashboard.html" : id + ".html"}"><i class="fa-solid ${icon}" aria-hidden="true"></i><span>${label}</span></a>`).join("")}</nav><div class="side-foot"><span class="avatar">${esc(initial)}</span><span class="side-profile-copy"><strong>${esc(displayName)}</strong><small>${esc(u.role || "Administrator")}</small></span><button class="icon-button logout-button" type="button" aria-label="Log out" title="Log out"><i class="fa-solid fa-arrow-right-from-bracket"></i></button></div></aside><main class="main"><header class="topbar"><div class="topbar-left"><button class="icon-button mobile-menu-button" id="menu-toggle" type="button" aria-label="Open navigation"><i class="fa-solid fa-bars"></i></button><strong class="top-title">${esc(title)}</strong></div><div class="top-actions"><label class="global-search"><i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i><input id="global-search-input" type="search" placeholder="Search products, suppliers, purchases" autocomplete="off" aria-label="Search products, suppliers, and purchases"><div class="global-search-results" id="global-search-results" hidden></div></label><span class="top-date">${new Intl.DateTimeFormat("en-IN", { dateStyle: "medium" }).format(new Date())}</span><div class="notification-wrap"><button class="icon-button notification-button" id="notification-toggle" type="button" aria-label="Notifications" aria-expanded="false"><i class="fa-regular fa-bell"></i><span class="notification-count" id="notification-count" hidden></span></button><div class="notification-panel" id="notification-panel" hidden></div></div><div class="profile-shortcut"><span class="avatar">${esc(initial)}</span><span>${esc(displayName)}</span></div></div></header><section class="content" id="content"></section></main>`;
   document.querySelector(".logout-button").addEventListener("click", () => API.logout());
   document.getElementById("menu-toggle").addEventListener("click", () => {
     document.getElementById("sidebar").classList.toggle("open");
@@ -515,9 +511,6 @@ async function specialized() {
               .join("")}</tr>`,
         )
         .join("")}</tbody></table></div>`;
-    } else if (page === "users") {
-      const users = await API.request("users");
-      a.innerHTML = `<div class="page-head"><div><p class="eyebrow">ACCESS MANAGEMENT</p><h1>Users</h1><p class="muted">Review the accounts with access to this workspace.</p></div></div><div class="panel table-panel"><div class="table-wrap"><table><thead><tr><th>User</th><th>Email</th><th>Role</th><th>Created</th></tr></thead><tbody>${users.length ? users.map((user) => `<tr><td><span class="user-cell"><span class="avatar small-avatar">${esc((user.name || "U").charAt(0).toUpperCase())}</span><strong>${esc(user.name)}</strong></span></td><td>${esc(user.email)}</td><td><span class="badge blue-badge">${esc(user.role)}</span></td><td>${user.created_at ? new Date(user.created_at).toLocaleDateString("en-IN", { day: "2-digit", month: "short", year: "numeric" }) : "—"}</td></tr>`).join("") : '<tr><td colspan="4" class="empty-cell">No user accounts found.</td></tr>'}</tbody></table></div></div>`;
     } else if (page === "reports") {
       let r = await API.request("reports");
       a.innerHTML = `<h1>Reports</h1><div class="toolbar"><select id="which"><option value="sales">Sales Report</option><option value="purchases">Purchase Report</option><option value="inventory">Inventory Report</option></select><button class="button" onclick="window.print()">Print</button><button class="button" id="csv">Export CSV</button></div><div id="report"></div>`;
@@ -556,49 +549,6 @@ async function specialized() {
         link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
         link.download = "report.csv";
         link.click();
-      };
-    } else if (page === "profile") {
-      let u = await API.request("profile");
-      a.innerHTML = `<h1>Profile</h1><form id="profile" class="panel form-grid"><label>Name<input name="name" value="${esc(u.name)}" required></label><label>Email<input name="email" type="email" value="${esc(u.email)}" required></label><label>Role<input disabled value="${esc(u.role)}"></label><button class="button primary">Save Profile</button></form>`;
-      a.querySelector("form").onsubmit = async (e) => {
-        e.preventDefault();
-        await API.request("profile", {
-          method: "PUT",
-          body: JSON.stringify(Object.fromEntries(new FormData(e.target))),
-        });
-        toast("Profile saved");
-      };
-    } else if (page === "settings") {
-      let s = await API.request("settings");
-      a.innerHTML = `<h1>Settings</h1><form id="settings" class="panel form-grid">${[
-        ["company_name", "Company Name"],
-        ["company_email", "Email"],
-        ["company_phone", "Phone"],
-        ["company_address", "Address"],
-        ["currency", "Currency"],
-        ["date_format", "Date Format"],
-      ]
-        .map(
-          ([n, l]) =>
-            `<label>${l}<input name="${n}" value="${esc(s[n] || "")}"></label>`,
-        )
-        .join(
-          "",
-        )}<label>Theme<select name="theme"><option>Light</option><option>Dark</option></select></label>${["low_stock_alerts", "sales_notifications", "purchase_notifications"].map((x) => `<label><input type="checkbox" name="${x}" ${s[x] ? "checked" : ""}> ${x.replaceAll("_", " ")}</label>`).join("")}<button class="button primary">Save Settings</button></form>`;
-      a.querySelector("#settings").onsubmit = async (e) => {
-        e.preventDefault();
-        let f = e.target,
-          b = Object.fromEntries(new FormData(f));
-        [
-          "low_stock_alerts",
-          "sales_notifications",
-          "purchase_notifications",
-        ].forEach((k) => (b[k] = f[k].checked));
-        await API.request("settings", {
-          method: "PUT",
-          body: JSON.stringify(b),
-        });
-        toast("Settings saved");
       };
     }
   }
