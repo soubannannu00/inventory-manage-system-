@@ -57,7 +57,7 @@
 @media(max-width:560px) { .dashboard-heading { align-items:flex-start; flex-direction:column; gap:9px; } .dashboard-heading h1 { font-size:23px; } .dashboard-stat-grid { gap:10px; } .stat-card { gap:9px; padding:13px 10px; } .stat-icon { width:33px; height:33px; border-radius:10px; } .stat-card .label { font-size:9px; } .stat-card .value { font-size:18px; } .analytics-panel,.table-panel,.top-products-panel { padding:15px; } .dashboard-table-wrap { margin:0 -15px -15px; } .dashboard-table th:first-child,.dashboard-table td:first-child { padding-left:15px; } .chart-box { height:230px; } .stock-chart-wrap { gap:10px; } .stock-donut { width:52%; height:160px; } .stock-status-legend { min-width:105px; gap:10px; } }
 
 
-/* The dashboard theme is scoped so every other page keeps its existing palette. */
+/* Dashboard-specific layout and dark theme details. */
 body.dashboard-theme {
   color-scheme: dark;
   --navy: var(--dashboard-text); --blue: var(--dashboard-blue); --blue-dark: #60a5fa;
